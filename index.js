@@ -13,6 +13,11 @@ import cors from 'cors'
 
 const app = express();
 
+//public folder images
+app.use(express.static('public'))
+app.use('/images' , express.static('images'))
+
+
 
 //middleware
 app.use(bodyParser.json({limit: '30mb' , extended: true}))
