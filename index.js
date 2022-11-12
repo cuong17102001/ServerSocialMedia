@@ -17,7 +17,7 @@ const app = express();
 app.use(express.static('public'))
 app.use('/images' , express.static('images'))
 
-
+app.set('view engine', 'ejs');
 
 //middleware
 app.use(bodyParser.json({limit: '30mb' , extended: true}))
