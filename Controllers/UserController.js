@@ -112,8 +112,9 @@ export const unFollowUser = async(req , res)=>{
 }
 
 export const getAllUser = async(req , res)=>{
+    const id = req.params.id
     try {
-        let users = await UserModel.find()
+        let users = await UserModel.find({ "_id": { $ne: id } })
         users = users.map((user) =>{
             const {password , ...otherDetails} = user._doc
             return otherDetails
