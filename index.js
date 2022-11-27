@@ -33,6 +33,7 @@ await mongoose.connect(process.env.MONGO_DB, {
 .then(()=> app.listen(process.env.PORT , ()=> console.log("listening at", process.env.PORT)))
 .catch((err) => console.log(err));
 console.log(mongoose.connection.readyState);
+console.log("heyo what's up!!");
 
 app.use('/auth' , AuthRoute);
 app.use('/user' , UserRoute);
