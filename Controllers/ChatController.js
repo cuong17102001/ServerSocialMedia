@@ -5,9 +5,19 @@ export const createChat = async (req , res) =>{
         members : [req.body.senderId , req.body.receiverId]
     })
 
+    const checkChat = await ChatModel.find({
+        members : {$all : [req.body.senderId , req.body.receiverId]}
+    })
+
     try {
-        const result = await newChat.save()
-        res.status(200).json(result)
+        if (checkChat.length === 0) {
+            const result = await newChat.save()
+            res.status(200).json(result)
+        }else{
+            res.status(200).json({
+                message:"chatroom is exist"
+            })
+        }
     } catch (error) {
         res.status(500).json(error)
     }
