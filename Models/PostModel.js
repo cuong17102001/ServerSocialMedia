@@ -13,6 +13,7 @@ const PostSchema = mongoose.Schema(
         image: {
             type: String
         },
+        comment: []
     },{
         timestamps : true
     }

@@ -108,3 +108,22 @@ export const likePost = async (req , res) =>{
     }
 
 }
+
+export const commentPosts = async(req , res) =>{
+    const id = req.params.id
+    const {idUserComment , nameUser , content} = req.body
+
+    const comment = {
+        idUserComment,
+        nameUser,
+        content
+    }
+
+    try {
+        const post = await PostModel.findById(id)
+        await post.updateOne({$push : {comment : comment}})
+        res.status(200).json({message : "Comment success"})
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
